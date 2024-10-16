@@ -1,9 +1,4 @@
-# python-oo
-
-Example for
-- classes in Python
-- unit tests
-- unit tests with mocks
+# MProjekt25
 
 ## Vorbereitung
 
@@ -38,39 +33,19 @@ Your branch is up to date with 'origin/main'.
 nothing to commit, working tree clean
 ```
 
-### Einrichten des virtual environment 
+## Nächste Schritte
 
-Einmalig wird die virtuelle Umgebung für das Projekt eingerichtet:
+### Python-Beispiel
+
+Wechsel in das Verzeichnis und Blick in die dortige README-Datei:
 ```shell
-python3 -m venv venv
-source venv/bin/activate
-python -m pip install -r requirements.txt
+cd HelloPython
+cat README.md
 ```
+### Java-Beispiel
 
-## Starten des Programms
-
-### Wechsel in virtual environment
-
-Für jede neu geöffnete Shell muss einmalig in die virtuelle Umgebung gewechselt werden:
+Wechsel in das Verzeichnis und Blick in die dortige README-Datei:
 ```shell
-cd <pfad_zu_src>/MProjekt25
-source venv/bin/activate
+cd HelloJava
+cat README.md
 ```
-
-### Ausführen der Tests
-
-Ausführen aller Unit-Tests im Verzeichnis 'tests'
-
-```shell
-pytest
-```
-
-### Ausführen des Programms
-
-```shell
-python main.py
-```
-
-
-
-
