@@ -9,7 +9,14 @@ public class Circle extends AbstractShape {
 
   public Circle(Point center, double radius) {
     super(center);
+    if (radius<=0 ) {
+      throw new IllegalArgumentException("Radius must be greater than 0");
+    }
     this.radius = radius;
+  }
+
+  public double getRadius() {
+    return radius;
   }
 
   @Override
