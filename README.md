@@ -8,7 +8,6 @@ in einer Git Bash unter Windows.
 
 ### Voraussetzungen
 
-- Python 3 ist installiert (https://www.python.org/downloads/)
 - Git-Client ist installiert (https://git-scm.com/downloads)
 - GitHub-Account ist angelegt und SSH-Key ist bei GitHub hinterlegt (https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 
