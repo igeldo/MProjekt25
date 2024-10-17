@@ -13,6 +13,6 @@ public class Vector extends Coordinate2D {
   }
 
   public Vector add(Vector other) {
-    return new Vector(x + other.x, y + other.y);
+    return new Vector(x + other.getX(), y + other.getY());
   }
 }
