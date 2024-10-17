@@ -2,7 +2,7 @@
 
 Example for
 - classes in Python
-- unit tests
+- unit tests with pytest
 - unit tests with mocks
 
 ## Vorbereitung
