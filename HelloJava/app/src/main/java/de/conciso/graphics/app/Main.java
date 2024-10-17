@@ -11,7 +11,7 @@ public class Main implements Runnable {
 
   public void run() {
     var circle = new Circle(new Point(12.5, 14), 3);
-    log.warn(String.format("%s has area: %f", circle, circle.calculateArea()));
+    log.info(String.format("%s has area: %f", circle, circle.calculateArea()));
   }
 
   public static void main(String[] args) {
