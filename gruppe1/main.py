@@ -14,15 +14,17 @@ print("Disclaimer")
 #TODO
 # disclaimer
 
-name = str(input("Bitte geben Sie Ihren Namen oder einen Alias ein: "))
+name = str(input("Bitte geben Sie Ihren Vor- und Nachnamen: "))
 
 #TODO
 # name logic
+# name check for duplicates
 
-age = int(input("Bitte geben Sie Ihr Alter an: "))
+age = int(input("Bitte geben Sie Ihr Alter in Zahlen an: "))
 
 #TODO
 # age logic and exception string to int conversion
+# age add range
 
 biological_sex = str(input("Bitte geben Sie Ihr biologisches Geschlecht an (w/m): "))
 
@@ -32,6 +34,20 @@ biological_sex = str(input("Bitte geben Sie Ihr biologisches Geschlecht an (w/m)
 pre_existing_conditions = str(input("Bitte geben Sie an, ob Sie Vorerkrankungen haben (Ja/Nein): "))
 #TODO
 # pre_existing_conditions logic and type conversion to data type (enum/bool/?) and exception handling and case insensitivity
+
+print("Bitte beachten Sie: ")
+print("Risikofaktor 1:  ")
+print("Risikofaktor 2:  ")
+print("Risikofaktor 3:  ")
+print("Risikofaktor 4:  ")
+print("Risikofaktor 5:  ")
+print("Sonstige Risikofaktoren 6:  ")
+
+#TODO
+# research risk factors and adding them
+
+pre_existing_conditions = str(input("Bitte geben Sie die Zahl(en) der zutreffenden Risikofaktoren an (mit Komma getrennt): "))
+
 
 print("Bitte beachten Sie: ")
 print("Fitnesslevel 1: seltene Bewegung und/oder leichter Sport 1 mal im Monat. ")
