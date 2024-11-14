@@ -1,8 +1,8 @@
-
+from enums.biological_sex import Biological_sex
 
 #TODO
 # look up actual data
-biological_sex_probs = {'männlich': 0.01 , 'weiblich': 0.02}
+biological_sex_probs = {Biological_sex.M: 0.01 , Biological_sex.W: 0.02}
 
 age_range_probs = {'18 - 25': 0.001 , '26 - 35': 0.003 , '36 - 45': 0.005}
 
