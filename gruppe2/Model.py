@@ -2,37 +2,38 @@
 
 class Person:
     def __init__(self, name, age, sex, weight, height):
-        self.name = name
-        self.age = age
-        self.sex = sex
-        self.weight = weight
-        self.height = height
+        self._name = name
+        self._age = age
+        self._sex = sex
+        self._weight = weight
+        self._height = height
 
     # Getter und Setter für die Klasse Person
     def get_name(self):
         return self.name
+
     def set_name(self, name):
-        self.name = name
+        self._name = name
 
     def get_age(self):
         return self.age
     def set_age(self, age):
-        self.age = age
+        self._age = age
 
     def get_sex(self):
         return self.sex
     def set_sex(self, sex):
-        self.sex = sex
+        self._sex = sex
 
     def get_weight(self):
         return self.weight
     def set_weight(self, weight):
-        self.weight = weight
+        self._weight = weight
 
     def get_height(self):
         return self.height
     def set_height(self, height):
-        self.height = height
+        self._height = height
 
 # Berechung des Grundumsatz (bei absoluter körperlicher Ruhe)
 def berechne_grundumsatz(self):
@@ -45,7 +46,7 @@ def berechne_grundumsatz(self):
     return grundumsatz
 
 
-class Meals:
+class Meal:
     def __init__(self, name_of_meal, ingredients, calories, carbs, protein, fat, vitamin):
         self.name_of_meal = name_of_meal
         self.ingredients = ingredients
@@ -55,12 +56,12 @@ class Meals:
         self.fat = fat
         self.vitamin = vitamin
 
-# Getter und Setter für die Klasse Meals
-def get_name_of_meal(self):
-    return self.name_of_meal
+    # Getter und Setter für die Klasse Meals
+    def get_name_of_meal(self):
+        return self.name_of_meal
 
-
-class Eating_behaviour(Meals, Person):
+# keine Vererbung sondern Beziehung
+class Eating_behaviour(Meal, Person):
     def __init__(self, name_of_meal, time, amount):
         self.name_of_meal = name_of_meal
         self.time = time
