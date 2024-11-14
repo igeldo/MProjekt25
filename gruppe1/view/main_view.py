@@ -62,7 +62,7 @@ class Main_view:
         print("Ernährung 2: ausgewogenere Ernährung, Obst und Gemüse 1 mal in der Woche. ")
         print("Ernährung 3: ausgewogene Ernährung, Obst und Gemüse bis zu 5 mal in der Woche. ")
 
-        diet = int(input(
+        diet_level = int(input(
             "Bitte geben Sie die Ernährungsbeschreibung, die am ehesten auf Sie zutrifft, als Zahl (1,2 oder 3) an: "))
         # TODO exceptions str to int conversion
 
