@@ -36,7 +36,7 @@ class App(customtkinter.CTk): # App erbt von customtkinter.CTk
         self.entry4.pack(padx=20, pady=10)
 
         # 5 Eingabefeld
-        self.entry5 = customtkinter.CTkEntry(self, placeholder_text="Größe in Cm:", width=width, height=30)
+        self.entry5 = customtkinter.CTkEntry(self, placeholder_text="Größe in cm:", width=width, height=30)
         self.entry5.pack(padx=20, pady=10)
 
         # Button zur Verarbeitung der Eingaben
@@ -69,7 +69,7 @@ class App(customtkinter.CTk): # App erbt von customtkinter.CTk
             print("Fehler: Bitte überprüfen sie ihren Angaben")
         # Nach dem Speichern die Eingabefelder leeren
 
-        # Grundumsatz berechnen
+        # Grundumsatz berechnen (bei absoluter körperlicher Ruhe)
         if geschlecht == "männlich":
             grundumsatz = 88.362 + (13.397 * gewicht) + (4.799 * groeße * 100) - (5.677 * age)
         elif geschlecht == "weiblich":
