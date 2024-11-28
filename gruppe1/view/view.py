@@ -1,5 +1,5 @@
 
-class Main_view:
+class View:
     def __init__(self):
 
         print("Test Main_view")

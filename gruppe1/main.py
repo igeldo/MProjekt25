@@ -1,4 +1,4 @@
-from view.main_view import Main_view
+from view.view import View
 
 
 class Main:
@@ -6,8 +6,8 @@ class Main:
         print("Test Main")
 
     def run(self):
-        main_view = Main_view()
-        main_view.ui()
+        view = View()
+        view.ui()
         print("Test_main_run")
 
 if __name__ == '__main__':

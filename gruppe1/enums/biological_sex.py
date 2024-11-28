@@ -2,6 +2,6 @@ from enum import Enum
 
 
 # class syntax
-class Biological_sex(Enum):
+class BiologicalSex(Enum):
     M = 1
     W = 2
