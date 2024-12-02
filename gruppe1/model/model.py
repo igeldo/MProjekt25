@@ -1,8 +1,5 @@
 from person import Person
 
-class Model(list):
-    def add_person(self, person: Person):
-        return True
-
-    def get_person(self, index: int):
-        return False
+class Model(list[Person]):
+    def __init__(self):
+        super().__init__()
