@@ -1,4 +1,3 @@
-# view.py
 import tkinter as tk
 from tkinter import messagebox
 
@@ -45,10 +44,10 @@ class PersonView:
         button.grid(row=row, column=column, columnspan=columnspan, pady=10)
         return button
 
-    def update_person_list(self, persons):
+    def update_person_list(self):
         """Aktualisiert die Personenliste in der GUI."""
         self.person_listbox.delete(0, tk.END)
-        for person in persons:
+        for person in self.model.get_all():
             self.person_listbox.insert(tk.END, str(person))
 
     def show_message(self, title, message):
