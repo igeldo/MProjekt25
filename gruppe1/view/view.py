@@ -1,10 +1,6 @@
 
 class View:
-    def __init__(self):
-
-        print("Test Main_view")
-
-    def ui(self):
+    def show_survey(self):
         # TODO Literatur
 
         # TODO while start
@@ -14,13 +10,13 @@ class View:
         # TODO
         # disclaimer
 
-        name = str(input("Bitte geben Sie Ihren Vor- und Nachnamen: "))
+        name = str(input("Bitte geben Sie Ihren Vor- und Nachnamen ein: "))
 
         # TODO
         # name logic
         # name check for duplicates
 
-        age = int(input("Bitte geben Sie Ihr Alter in Zahlen an: "))
+        age = str(input("Bitte geben Sie Ihr Alter in Zahlen an: "))
 
         # TODO
         # age logic and exception string to int conversion
@@ -65,6 +61,11 @@ class View:
         diet_level = int(input(
             "Bitte geben Sie die Ernährungsbeschreibung, die am ehesten auf Sie zutrifft, als Zahl (1,2 oder 3) an: "))
         # TODO exceptions str to int conversion
+
+        return str[name, age, biological_sex, pre_existing_conditions, fitness_level, diet_level]
+
+
+    def show_result(self):
 
         # TODO calculations
         result = "0"

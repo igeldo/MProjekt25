@@ -1,4 +1,13 @@
+from view import App
+from controller import Controller
+from Person import Person
 
 
-if __name__ == '__main__':
-    print(f"Hello World!")
+def main():
+
+    app = App()
+    controller = Controller(view=app, model=Person)
+    app.mainloop()
+
+if __name__ == "__main__":
+    main()

@@ -1,8 +1,13 @@
 from person import Person
 
-class Model(list):
+class Model(list[Person]):
     def add_person(self, person: Person):
-        return True
+        if isinstance(person, Person):
+            self.append(person)
+        else:
+            raise ValueError("Nur Objekte der Klasse 'Person' können hinzugefügt werden.")
 
-    def get_person(self, index: int):
-        return False
+    # def get_person(self, index):
+    #     if index < 0 or index >= len(self):
+    #         raise IndexError("Index liegt außerhalb der Grenzen der Liste.")
+    #     return self[index]

@@ -1,5 +1,7 @@
 import customtkinter
 from datenbank import add_person, get_all_people
+from Person import Person
+from controller import Controller
 from sqlalchemy.exc import SQLAlchemyError
 
 # CustomTkinter-Einstellungen
@@ -96,7 +98,7 @@ class App(customtkinter.CTk):  # App erbt von customtkinter.CTk
 
     @staticmethod
     def calculate_bmr(geschlecht, gewicht, groeße, age):
-        """Berechnet den Grundumsatz (BMR)."""
+        # Berechnet den Grundumsatz (BMR)
         if geschlecht == "Männlich":
             return 88.362 + (13.397 * gewicht) + (4.799 * groeße) - (5.677 * age)
         elif geschlecht == "Weiblich":
@@ -104,8 +106,7 @@ class App(customtkinter.CTk):  # App erbt von customtkinter.CTk
         return None
 
 
-
-
 # Anwendung starten
 app = App()
+controller = Controller(view=app, model=Person)
 app.mainloop()

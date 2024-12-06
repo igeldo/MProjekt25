@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from Person import Base, Person  # Importiere das Model "Person" und "Base"
+from Person import Base, Person
 
 # Datenbankverbindung einrichten
 DATABASE_URL = "sqlite:///test.db"
@@ -17,7 +17,7 @@ session = Session()
 
 # Funktionen zur Verwaltung von Personendaten
 def add_person(vorname, age, geschlecht, gewicht, size):
-    """Fügt eine neue Person zur Datenbank hinzu."""
+    # Fügt eine neue Person zur Datenbank hinzu
     neue_person = Person(
         name=vorname,
         age=age,
@@ -31,5 +31,5 @@ def add_person(vorname, age, geschlecht, gewicht, size):
 
 
 def get_all_people():
-    """Holt alle Personen aus der Datenbank."""
+    # Holt alle Personen aus der Datenbank
     return session.query(Person).all()
