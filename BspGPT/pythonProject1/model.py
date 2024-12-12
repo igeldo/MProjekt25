@@ -1,7 +1,4 @@
-# model.py
 import json
-# import os
-
 
 class Person:
     """Repräsentiert eine einzelne Person."""
@@ -52,14 +49,22 @@ class PersonList:
 
     def save_to_file(self, filename):
         """Speichert die Personenliste in einer JSON-Datei."""
+        if not filename.endswith(".json"):
+            filename += ".json"  # Standarderweiterung hinzufügen
         with open(filename, 'w') as file:
             json.dump([person.to_dict() for person in self.persons], file)
- #           print(f"JSON-Datei wird gespeichert unter: {os.getcwd()}")
 
     def load_from_file(self, filename):
         """Lädt die Personenliste aus einer JSON-Datei."""
+        if not filename.endswith(".json"):
+            filename += ".json"  # Standarderweiterung hinzufügen
         try:
             with open(filename, 'r') as file:
-                self.persons = [Person.from_dict(data) for data in json.load(file)]
+                data = json.load(file)
+                self.persons = [Person.from_dict(person_data) for person_data in data]
         except FileNotFoundError:
+            print(f"Die Datei '{filename}' wurde nicht gefunden.")
+            self.persons = []
+        except Exception as e:
+            print(f"Fehler beim Laden der Datei '{filename}': {e}")
             self.persons = []

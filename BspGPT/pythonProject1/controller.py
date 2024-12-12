@@ -1,6 +1,4 @@
-# controller.py
-import os
-from model import Person
+from model import Person  # Importieren der Klasse Person
 
 class PersonController:
     def __init__(self, model, view):
@@ -33,25 +31,32 @@ class PersonController:
             except ValueError:
                 raise ValueError("Alter, Größe und Gewicht müssen numerisch sein!")
 
-            # Person erstellen
-            person = Person(name, age, height, weight, blood_type)
-
-            # Zur Liste hinzufügen und GUI aktualisieren
+            # Person erstellen und dem Model hinzufügen
+            person = Person(name, age, height, weight, blood_type)  # Direkt die Klasse verwenden
             self.model.add_person(person)
-            self.view.update_person_list(self.model.get_all())
+
+            # View anstoßen, sich selbst zu aktualisieren
+            self.view.update_person_list()
             self.view.show_message("Erfolg", f"Person '{name}' wurde hinzugefügt.")
         except ValueError as e:
             self.view.show_error("Fehler", str(e))
 
+    # Rest des Codes bleibt unverändert
+
     def remove_person(self):
         """Entfernt eine ausgewählte Person."""
-        index = self.view.person_listbox.curselection()
-        if index:
+        try:
+            index = self.view.person_listbox.curselection()
+            if not index:
+                raise ValueError("Bitte wählen Sie eine Person aus!")
+
             self.model.remove_person(index[0])
-            self.view.update_person_list(self.model.get_all())
+
+            # View anstoßen, sich selbst zu aktualisieren
+            self.view.update_person_list()
             self.view.show_message("Erfolg", "Person wurde entfernt.")
-        else:
-            self.view.show_error("Fehler", "Bitte wählen Sie eine Person aus!")
+        except ValueError as e:
+            self.view.show_error("Fehler", str(e))
 
     def save_to_file(self):
         """Speichert die Personenliste in einer JSON-Datei."""
@@ -59,12 +64,10 @@ class PersonController:
             filename = self.view.filename_entry.get()
             if not filename:
                 raise ValueError("Bitte geben Sie einen Dateinamen ein!")
-            if not filename.endswith(".json"):
-                filename += ".json"  # Standarderweiterung hinzufügen
-            filepath = os.path.join(os.getcwd(), filename)
+            self.model.save_to_file(filename)
 
-            self.model.save_to_file(filepath)
-            self.view.show_message("Erfolg", f"Personenliste wurde in '{filepath}' gespeichert.")
+            # Erfolgsmeldung anzeigen
+            self.view.show_message("Erfolg", f"Personenliste wurde in '{filename}' gespeichert.")
         except Exception as e:
             self.view.show_error("Fehler", f"Die Datei konnte nicht gespeichert werden: {e}")
 
@@ -74,13 +77,11 @@ class PersonController:
             filename = self.view.filename_entry.get()
             if not filename:
                 raise ValueError("Bitte geben Sie einen Dateinamen ein!")
-            if not filename.endswith(".json"):
-                filename += ".json"  # Standarderweiterung hinzufügen
-            filepath = os.path.join(os.getcwd(), filename)
+            self.model.load_from_file(filename)
 
-            self.model.load_from_file(filepath)
-            self.view.update_person_list(self.model.get_all())
-            self.view.show_message("Erfolg", f"Personenliste wurde aus '{filepath}' geladen.")
+            # View anstoßen, sich selbst zu aktualisieren
+            self.view.update_person_list()
+            self.view.show_message("Erfolg", f"Personenliste wurde aus '{filename}' geladen.")
         except FileNotFoundError:
             self.view.show_error("Fehler", "Die Datei wurde nicht gefunden!")
         except Exception as e:
