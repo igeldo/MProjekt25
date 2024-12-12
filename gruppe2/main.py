@@ -1,6 +1,7 @@
 from view import App
 from controller import Controller
 from Person import Person
+from datenbank import add_person
 
 
 def main():

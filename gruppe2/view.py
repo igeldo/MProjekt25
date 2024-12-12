@@ -81,7 +81,7 @@ class App(customtkinter.CTk):  # App erbt von customtkinter.CTk
 
         # Datenbank speichern
         try:
-            add_person(vorname, age, geschlecht, gewicht, groeße)
+            datenbank.add_person(vorname, age, geschlecht, gewicht, groeße)
             self.result_label.configure(
                 text=f"{vorname}, Ihr Grundumsatz: {grundumsatz:.2f} Kalorien/Tag.",
                 text_color="green"
