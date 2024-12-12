@@ -1,6 +1,8 @@
 import customtkinter
-from datenbank import add_person, get_all_people
+import datenbank
 from Person import Person
+from datenbank import add_person
+
 from controller import Controller
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -49,7 +51,7 @@ class App(customtkinter.CTk):  # App erbt von customtkinter.CTk
         self.result_label.pack(padx=20, pady=10)
 
     def submit_callback(self):
-        """Verarbeitet die Eingaben und speichert sie in der Datenbank."""
+        #Verarbeitet die Eingaben und speichert sie in der Datenbank
         vorname = self.entry1.get()
         age = self.entry2.get()
         geschlecht = self.gender_var.get()
@@ -89,7 +91,7 @@ class App(customtkinter.CTk):  # App erbt von customtkinter.CTk
             self.result_label.configure(text=f"Datenbankfehler: {e}", text_color="red")
 
     def clear_inputs(self):
-        """Löscht die Eingabefelder."""
+        #Löscht die Eingabefelder
         self.entry1.delete(0, "end")
         self.entry2.delete(0, "end")
         self.entry4.delete(0, "end")

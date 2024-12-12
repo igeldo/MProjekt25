@@ -30,14 +30,14 @@ session = Session()
 
 # CRUD-Operationen
 def create_person(name, age, sex, weight, height):
-    """Erstellt eine neue Person und speichert sie in der Datenbank."""
+    #Erstellt eine neue Person und speichert sie in der Datenbank
     new_person = Person(name=name, age=age, sex=sex, weight=weight, height=height)
     session.add(new_person)
     session.commit()
     print(f"Person {name} wurde erstellt!")
 
 def get_all_persons():
-    """Gibt alle Personen aus der Datenbank zurück."""
+    #Gibt alle Personen aus der Datenbank zurück
     return session.query(Person).all()
 
 def find_person_by_name(name):
