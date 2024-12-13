@@ -1,35 +1,39 @@
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, Column, Integer, String, Float
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from Person import Base, Person
 
-# Datenbankverbindung einrichten
-DATABASE_URL = "sqlite:///test.db"
+# Erzeugt die Basis-Klasse für das ORM
+Base = declarative_base()
 
-# Engine erstellen
-engine = create_engine(DATABASE_URL, echo=True)
+class Person(Base):
+    __tablename__ = 'personen'
 
-# Tabellen erstellen (falls nicht vorhanden)
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    vorname = Column(String)
+    alter = Column(Integer)
+    geschlecht = Column(String)
+    gewicht = Column(Float)
+    groeße = Column(Float)
+
+# Erstellen der SQLite-Datenbank
+engine = create_engine('sqlite:///kalorien_tracker.db')
 Base.metadata.create_all(engine)
 
-# Session einrichten
+# Erzeugt eine Session-Klasse
 Session = sessionmaker(bind=engine)
 session = Session()
 
-# Funktionen zur Verwaltung von Personendaten
-def add_person(vorname, age, geschlecht, gewicht, size):
-    # Fügt eine neue Person zur Datenbank hinzu
-    neue_person = Person(
-        name=vorname,
-        age=age,
-        sex=geschlecht,
-        weight=gewicht,
-        height=size
-    )
-    session.add(neue_person)
-    session.commit()
-    print(f"Person {vorname} wurde erfolgreich hinzugefügt!")
-
-
-def get_all_people():
-    # Holt alle Personen aus der Datenbank
-    return session.query(Person).all()
+def add_person(vorname, alter, geschlecht, gewicht, groeße):
+    try:
+        neue_person = Person(
+            vorname=vorname,
+            alter=alter,
+            geschlecht=geschlecht,
+            gewicht=gewicht,
+            groeße=groeße
+        )
+        session.add(neue_person)
+        session.commit()
+    except Exception as e:
+        session.rollback()
+        raise
