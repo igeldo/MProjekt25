@@ -121,17 +121,40 @@ class PersonView:
         if not selection:
             return None
 
-        selected_item = self.people_listbox.get(selection[0])
+        selected_index = selection[0]
+        selected_item = self.people_listbox.get(selected_index)
+
         if "Person:" in selected_item:
             # Selected a person
-            name = selected_item.split(":")[1].split(",")[0].strip()
-            return {"type": "person", "name": name}
+            try:
+                name = selected_item.split(":")[1].split(",")[0].strip()
+                return {"type": "person", "name": name}
+            except (IndexError, ValueError):
+                return None  # Handle unexpected string format
+
         elif "Measurement:" in selected_item:
             # Selected a measurement
-            parent_name = self.people_listbox.get(selection[0] - 1).split(":")[1].split(",")[0].strip()
-            time_part = selected_item.split(":")[1].split(",")[0].strip()
-            hour, minute = map(int, time_part.split(":"))
-            return {"type": "measurement", "name": parent_name, "hour": hour, "minute": minute}
+            try:
+                # Traverse backward to find the associated parent person
+                parent_name = None
+                for i in range(selected_index - 1, -1, -1):  # Loop backwards from current index
+                    potential_person = self.people_listbox.get(i)
+                    if "Person:" in potential_person:
+                        parent_name = potential_person.split(":")[1].split(",")[0].strip()
+                        break
+
+                if not parent_name:
+                    return None  # No associated parent person found
+
+                # Extract hour and minute from the measurement string
+                parts = selected_item.split(" ")
+                time_part = parts[3].rstrip(",")  # Remove trailing comma
+                hour, minute = map(int, time_part.split(":"))
+
+                return {"type": "measurement", "name": parent_name, "hour": hour, "minute": minute}
+            except (IndexError, ValueError):
+                return None  # Handle unexpected string format or parsing errors
+
         return None
 
     def update_status(self, message, status_type="info"):
