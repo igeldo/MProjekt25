@@ -1,4 +1,5 @@
-from peewee import SqliteDatabase, Model as PeeweeModel, CharField, IntegerField, FloatField, CompositeKey
+from peewee import SqliteDatabase, Model as PeeweeModel, CharField, IntegerField, FloatField, CompositeKey, \
+    ForeignKeyField
 
 # Database connection
 db = SqliteDatabase("person_measurements.db")
@@ -13,7 +14,7 @@ class Person(PeeweeModel):
         database = db
 
 class Measurement(PeeweeModel):
-    name = CharField()
+    name = ForeignKeyField(Person, backref='measurements', on_delete='CASCADE')  # Foreign key to Person.name
     hour = IntegerField()
     minute = IntegerField()
     temperature = FloatField()
@@ -36,7 +37,9 @@ class Model:
             person.save()
 
     def delete_person(self, name):
-        Person.delete().where(Person.name == name).execute()
+        person = Person.get_or_none(Person.name == name)
+        if person:
+            person.delete_instance(recursive=True)  # Deletes person and related measurements
 
     def get_all_people(self):
         return [{"name": p.name, "age": p.age, "blood_type": p.blood_type} for p in Person.select()]
