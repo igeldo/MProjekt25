@@ -7,10 +7,10 @@ class Main:
         # instantiate mvc parts
         model = Model()
         view = View(model)
-        control = Control(view, model)
+        control = Control(model, view)
 
         # control calls methods
-
+        control.get_input()
 
 if __name__ == '__main__':
     main = Main()

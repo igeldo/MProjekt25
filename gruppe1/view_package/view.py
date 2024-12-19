@@ -69,7 +69,7 @@ class View:
             "Bitte geben Sie die Ernährungsbeschreibung, die am ehesten auf Sie zutrifft, als Zahl (1,2 oder 3) an: "))
         # TODO exceptions str to int conversion
 
-        return str[name, age, biological_sex, pre_existing_conditions, fitness_level, diet_level]
+        return [name, age, biological_sex, pre_existing_conditions, fitness_level, diet_level]
 
 
     def show_result(self):

@@ -1,9 +1,9 @@
-from constants_package.age_range import AgeRange
-from constants_package.biological_sex import BiologicalSex
-from constants_package.pre_condition import PreCondition
-from constants_package.fitness_level import FitnessLevel
-from constants_package.diet_level import DietLevel
-from health_conditions import HealthConditions
+from model_package.constants_package.age_range import AgeRange
+from model_package.constants_package.biological_sex import BiologicalSex
+from model_package.constants_package.pre_condition import PreCondition
+from model_package.constants_package.fitness_level import FitnessLevel
+from model_package.constants_package.diet_level import DietLevel
+from model_package.health_conditions import HealthConditions
 
 class Person:
     def __init__(self, name: str, age: AgeRange, biological_sex: BiologicalSex,

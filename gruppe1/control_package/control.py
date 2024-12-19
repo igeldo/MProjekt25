@@ -1,4 +1,5 @@
 from model_package.model import Model
+from model_package.person import Person
 from view_package.view import View
 
 class Control:
@@ -8,3 +9,12 @@ class Control:
         else:
             self.model = model
             self.view = view
+
+    def get_input(self):
+        # get person data
+        person_data = self.view.show_survey()
+
+        # person = Person(person_data)
+
+        # add person to model
+        # self.model.add_person(person_data)
