@@ -43,6 +43,10 @@ class Controller:
 
         try:
             hour, minute = map(int, time.split(":"))
+            if not (0 <= hour <= 23):
+                raise ValueError("Hour must be between 0 and 23.")
+            if not (0 <= minute <= 59):
+                raise ValueError("Minute must be between 0 and 59.")
             self.model.add_or_update_measurement(name, hour, minute, float(temperature))
             self.view.set_status(f"Measurement for '{name}' at {hour:02}:{minute:02} added/updated.", "success")
             self.refresh_view()

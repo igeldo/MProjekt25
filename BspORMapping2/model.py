@@ -24,7 +24,7 @@ class Measurement(PeeweeModel):
         primary_key = CompositeKey("name", "hour", "minute")
 
 # Unified Model Class
-class Model:
+class Model: # DAO Class
     def __init__(self):
         db.connect()
         db.create_tables([Person, Measurement])
