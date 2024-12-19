@@ -1,8 +1,8 @@
-from constants.age_range import AgeRange
-from constants.biological_sex import BiologicalSex
-from constants.pre_condition import PreCondition
-from constants.fitness_level import FitnessLevel
-from constants.diet_level import DietLevel
+from constants_package.age_range import AgeRange
+from constants_package.biological_sex import BiologicalSex
+from constants_package.pre_condition import PreCondition
+from constants_package.fitness_level import FitnessLevel
+from constants_package.diet_level import DietLevel
 from health_conditions import HealthConditions
 
 class Person:

@@ -1,5 +1,12 @@
+from model_package.model import Model
 
 class View:
+    def __init__(self, model: Model):
+        if not isinstance(model, Model):
+            raise ValueError("Model nicht valide.")
+        else:
+            self.model = model
+
     def show_survey(self):
         # TODO Literatur
 
