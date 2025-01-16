@@ -10,6 +10,7 @@ class ViewGUI:
             self.model = model
             self.root = root
             self.root.title("Umfrage")
+            self.root.geometry("400x400")
 
         self.create_widgets()
         self.callbacks = {}
@@ -25,27 +26,30 @@ class ViewGUI:
         self.age_label = tk.Label(self.root, text="Altersspanne:")
         self.age_label.pack()
         self.age_var = tk.StringVar()
+        self.age_var.set(None)  # Setze auf None, um keine Vorauswahl zu haben
         age_options = ["18 bis 27", "28 bis 37", "38 bis 47", "48 bis 57", "58 bis 67", "68 bis 77", "anderes"]
         for option in age_options:
             radio = tk.Radiobutton(self.root, text=option, variable=self.age_var, value=option)
-            radio.pack(anchor=tk.W)
+            radio.pack(anchor=tk.CENTER)
 
         # Biologisches Geschlecht
         self.biological_sex_label = tk.Label(self.root, text="Biologisches Geschlecht:")
         self.biological_sex_label.pack()
         self.sex_var = tk.StringVar()
+        self.sex_var.set(None)  # Setze auf None
         for sex in ["w", "m"]:
             radio = tk.Radiobutton(self.root, text=sex, variable=self.sex_var, value=sex)
-            radio.pack(anchor=tk.W)
+            radio.pack(anchor=tk.CENTER)
 
         # Vorerkrankungen
         self.pre_existing_conditions_label = tk.Label(self.root, text="Vorerkrankungen:")
         self.pre_existing_conditions_label.pack()
         self.pre_conditions_var = tk.StringVar()
+        self.pre_conditions_var.set(None)  # Setze auf None
         for condition in ["ja", "nein"]:
             radio = tk.Radiobutton(self.root, text=condition, variable=self.pre_conditions_var, value=condition,
                                    command=self.notify_pre_conditions)
-            radio.pack(anchor=tk.W)
+            radio.pack(anchor=tk.CENTER)
 
         self.condition_options_frame = tk.Frame(self.root)
         self.condition_options_frame.pack()
@@ -54,17 +58,20 @@ class ViewGUI:
         self.fitness_level_label = tk.Label(self.root, text="Fitnesslevel:")
         self.fitness_level_label.pack()
         self.fitness_var = tk.StringVar()
-        for level in ["1", "2", "3"]:
-            radio = tk.Radiobutton(self.root, text=level, variable=self.fitness_var, value=level)
-            radio.pack(anchor=tk.W)
+        self.fitness_var.set(None)  # Setze auf None
 
-        # Diätlevel
-        self.diet_level_label = tk.Label(self.root, text="Diätlevel:")
+        for level in ["wenig aktiv", "aktiv", "sehr aktiv"]:
+            radio = tk.Radiobutton(self.root, text=level, variable=self.fitness_var, value=level)
+            radio.pack(anchor=tk.CENTER)
+
+        # Ernährung
+        self.diet_level_label = tk.Label(self.root, text="Ernährung:")
         self.diet_level_label.pack()
         self.diet_var = tk.StringVar()
-        for level in ["1", "2", "3"]:
+        self.diet_var.set(None)  # Setze auf None
+        for level in ["unausgewogene Ernährung", "ausgewogenere Ernährung", "ausgewogene Ernährung"]:
             radio = tk.Radiobutton(self.root, text=level, variable=self.diet_var, value=level)
-            radio.pack(anchor=tk.W)
+            radio.pack(anchor=tk.CENTER)
 
         # Submit Button
         self.submit_button = tk.Button(self.root, text="Absenden", command=self.submit)
@@ -104,4 +111,3 @@ class ViewGUI:
         # Verstecke die zusätzlichen Optionen
         for widget in self.condition_options_frame.winfo_children():
             widget.destroy()
-
