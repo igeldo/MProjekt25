@@ -12,3 +12,11 @@ class Person:
         self._age = age
         self._biological_sex = biological_sex
         self._health_condition = HealthConditions(pre_condition, fitness_level, diet_level)
+
+    # for debugging purposes only
+    def __str__(self):
+        return (f"Name: {self._name}, Alter: {self._age}, "
+                f"biologisches Geschlecht: {self._biological_sex}, "
+                f"Vorerkrankungen: {self._health_condition._pre_condition}, "
+                f"Fitnesslevel: {self._health_condition._fitness_level} "
+                f"Dietlevel: {self._health_condition._diet_level}")

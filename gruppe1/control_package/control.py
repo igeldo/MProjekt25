@@ -28,5 +28,7 @@ class Control:
 
         person = Person(name, age, biological_sex, pre_existing_conditions, fitness_level, diet_level)
 
+        print(person)
+
         # add person to model
         self.model.add_person(person)
