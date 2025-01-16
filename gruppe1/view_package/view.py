@@ -57,7 +57,7 @@ class View:
         print("Fitnesslevel 2: gelegentliche Bewegung und/oder regelmäßiger Sport 1 mal in der Woche. ")
         print("Fitnesslevel 3: viel Bewegung und/oder regelmäßiger Sport mehr als 1 mal in der Woche. ")
 
-        fitness_level = int(input("Bitte geben Sie Ihr Fitnesslevel als Zahl (1,2 oder 3) an: "))
+        fitness_level = str(input("Bitte geben Sie Ihr Fitnesslevel als Zahl (1,2 oder 3) an: "))
         # TODO exceptions str to int conversion
 
         print("Bitte beachten Sie: ")
@@ -65,7 +65,7 @@ class View:
         print("Ernährung 2: ausgewogenere Ernährung, Obst und Gemüse 1 mal in der Woche. ")
         print("Ernährung 3: ausgewogene Ernährung, Obst und Gemüse bis zu 5 mal in der Woche. ")
 
-        diet_level = int(input(
+        diet_level = str(input(
             "Bitte geben Sie die Ernährungsbeschreibung, die am ehesten auf Sie zutrifft, als Zahl (1,2 oder 3) an: "))
         # TODO exceptions str to int conversion
 
