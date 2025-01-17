@@ -1,0 +1,4 @@
+pylint
+pytest
+peewee
+psycopg2-binary
