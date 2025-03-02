@@ -9,6 +9,9 @@ class PreCondition(Flag):
     CONDITION_5 = 16
     OTHER       = 32
 
+
+    #TODO: pre_condition "S"?
+
     CONDITION_MAP = {
         "1": CONDITION_1,
         "2": CONDITION_2,

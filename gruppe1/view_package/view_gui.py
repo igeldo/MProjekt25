@@ -10,12 +10,16 @@ class ViewGUI:
             self.model = model
             self.root = root
             self.root.title("Umfrage")
-            self.root.geometry("400x400")
+            self.root.geometry("400x800")
 
         self.create_widgets()
         self.callbacks = {}
 
     def create_widgets(self):
+        # Label hinzufügen
+        label = tk.Label(self.root, text="Willkommen zum deinem Risikorechner! Disclaimer! "
+                                         "Falls Sie fortfahren, erklären Sie sich einverstanden.", anchor=tk.CENTER, wraplength=400)
+        label.pack(expand=True, fill="both")
         # Name
         self.name_label = tk.Label(self.root, text="Name:")
         self.name_label.pack()
@@ -42,8 +46,8 @@ class ViewGUI:
             radio.pack(anchor=tk.CENTER)
 
         # Vorerkrankungen
-        self.pre_existing_conditions_label = tk.Label(self.root, text="Vorerkrankungen:")
-        self.pre_existing_conditions_label.pack()
+        self.pre_conditions_label = tk.Label(self.root, text="Vorerkrankungen:")
+        self.pre_conditions_label.pack()
         self.pre_conditions_var = tk.StringVar()
         self.pre_conditions_var.set(None)  # Setze auf None
         for condition in ["ja", "nein"]:
@@ -79,17 +83,20 @@ class ViewGUI:
 
     def notify_pre_conditions(self):
         # Informiere die Control-Klasse über Änderungen
-        pre_existing_condition = self.pre_conditions_var.get()
-        if 'pre_existing_conditions' in self.callbacks:
-            self.callbacks['pre_existing_conditions'](pre_existing_condition)
+        pre_condition = self.pre_conditions_var.get()
+        if 'pre_conditions' in self.callbacks:
+            self.callbacks['pre_conditions'](pre_condition)
 
     def submit(self):
         # Hier sammeln wir die Daten und informieren die Control-Klasse
+        pre_conditions = "nein"     # Vorauswahl = "nein"
+        if "ja" == self.pre_conditions_var.get():
+            pre_conditions = ", ".join([pre_condition.get() for pre_condition in self.selected_pre_conditions if ("" != pre_condition.get() and "None" != pre_condition.get())])
         data = {
             'name': self.name_entry.get(),
             'age': self.age_var.get(),
             'biological_sex': self.sex_var.get(),
-            'pre_existing_conditions': self.pre_conditions_var.get(),
+            'pre_conditions': pre_conditions,
             'fitness_level': self.fitness_var.get(),
             'diet_level': self.diet_var.get()
         }
@@ -99,15 +106,23 @@ class ViewGUI:
     def set_callbacks(self, callbacks):
         self.callbacks = callbacks
 
-    def show_pre_existing_conditions_options(self):
+    def show_pre_conditions_options(self):
         # Zeige zusätzliche Optionen für Vorerkrankungen an
         # Hier können weitere Widgets hinzugefügt werden, um spezifische Bedingungen auszuwählen
         tk.Label(self.condition_options_frame, text="Wählen Sie eine Vorerkrankung:").pack(anchor=tk.W)
         condition_options = ["Bluthochdruck", "Schilddrüsenüberfunktion", "andere"]
+        self.selected_pre_conditions = []
         for option in condition_options:
-            tk.Checkbutton(self.condition_options_frame, text=option).pack(anchor=tk.W)
+            condition_option_var = tk.StringVar()
+            condition_option_var.set(None)  # Setze auf None
+            self.selected_pre_conditions.append(condition_option_var)
+            tk.Checkbutton(self.condition_options_frame, text=option, variable=condition_option_var, onvalue=option, offvalue="").pack(anchor=tk.W)
 
-    def hide_pre_existing_conditions_options(self):
+    def hide_pre_conditions_options(self):
         # Verstecke die zusätzlichen Optionen
         for widget in self.condition_options_frame.winfo_children():
             widget.destroy()
+
+
+
+    #TODO: werden 'set(None)'s gebraucht?
