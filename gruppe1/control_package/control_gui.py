@@ -3,16 +3,21 @@ from view_package.view_gui import ViewGUI
 
 class ControlGUI:
     def __init__(self, model: Model, view: ViewGUI):
-        if not isinstance(model, Model) or not isinstance(view, ViewGUI):
-            raise ValueError("Model und View nicht valide.")
-        else:
-            self.model = model
-            self.view = view
+        if not isinstance(model, Model):
+            raise ValueError("Model nicht valide.")
+        elif not isinstance(view, ViewGUI):
+            raise ValueError("View nicht valide.")
+
+        # dependency injection
+        self.model = model
+        self.view = view
+
+        # Bind buttons to methods
+
 
             # Registriere Callbacks für die Benutzeroberfläche
         self.view.set_callbacks({
-            'submit': self.handle_submit,
-            'pre_conditions': self.handle_pre_conditions,
+            'submit': self.handle_submit
         })
 
     def handle_submit(self, data):
@@ -50,9 +55,3 @@ class ControlGUI:
                         pre_conditions=pre_conditions,
                         fitness_level=fitness_level, diet_level=diet_level)
         self.model.add_person(person)
-
-    def handle_pre_conditions(self, value):
-        if value == "ja":
-            self.view.show_pre_conditions_options()
-        else:
-            self.view.hide_pre_conditions_options()
