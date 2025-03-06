@@ -25,7 +25,7 @@ class ViewGUI:
         self.display_frame = tk.Frame(self.root)
 
         self.create_form_widgets()
-        # self.create_display_widgets()
+        self.create_display_widgets()
 
         self.show_form_frame()
 
@@ -102,7 +102,17 @@ class ViewGUI:
         # clear button
 
 
-    #def create_display_widgets(self):
+        self.button_switch_to_display = tk.Button(self.form_frame, text="Zur Auswertung",
+                                                  command=self.show_display_frame)
+        self.button_switch_to_display.pack()
+
+    def create_display_widgets(self):
+        self.data_display = tk.Listbox(self.display_frame, height=15, width=80)
+        self.data_display.pack()
+
+        self.button_switch_to_form = tk.Button(self.display_frame, text="Zur Dateneingabe",
+                                               command=self.show_form_frame)
+        self.button_switch_to_form.pack()
 
     def show_form_frame(self):
         self.display_frame.pack_forget()
