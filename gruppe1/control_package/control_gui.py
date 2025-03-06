@@ -12,17 +12,13 @@ class ControlGUI:
         self.model = model
         self.view = view
 
-        # Bind buttons to methods
+        # bind buttons to methods
+        self.view.add_person_button.config(command=self.add_person)
 
-
-            # Registriere Callbacks für die Benutzeroberfläche
-        self.view.set_callbacks({
-            'submit': self.handle_submit
-        })
-
-    def handle_submit(self, data):
+    def add_person(self):
         # Hier konvertieren und speichern wir die Benutzerinformationen
         # Beispiel: Datenextraktion aus dem Argument `data`
+        data = self.view.get_inputs()
         name = data['name']
         age = data['age']
         biological_sex = data['biological_sex']

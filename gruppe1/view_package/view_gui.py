@@ -13,8 +13,6 @@ class ViewGUI:
         self.model = model
         self.root = root
 
-        self.callbacks = {}
-
         self.setup_window()
 
     def setup_window(self):
@@ -96,8 +94,8 @@ class ViewGUI:
             radio.pack(anchor=tk.CENTER)
 
         # Submit Button
-        self.submit_button = tk.Button(self.form_frame, text="Hinzufügen", command=self.submit)
-        self.submit_button.pack()
+        self.add_person_button = tk.Button(self.form_frame, text="Hinzufügen")
+        self.add_person_button.pack()
 
         # clear button
 
@@ -122,12 +120,12 @@ class ViewGUI:
         self.form_frame.pack_forget()
         self.display_frame.pack(fill="both", expand=True)
 
-    def submit(self):
+    def get_inputs(self):
         # Hier sammeln wir die Daten und informieren die Control-Klasse
         pre_conditions = "nein"     # Vorauswahl = "nein"
         if "ja" == self.pre_conditions_var.get():
             pre_conditions = ", ".join([pre_condition.get() for pre_condition in self.selected_pre_conditions if ("" != pre_condition.get() and "None" != pre_condition.get())])
-        data = {
+        return {
             'name': self.name_entry.get(),
             'age': self.age_var.get(),
             'biological_sex': self.sex_var.get(),
@@ -135,11 +133,6 @@ class ViewGUI:
             'fitness_level': self.fitness_var.get(),
             'diet_level': self.diet_var.get()
         }
-        if 'submit' in self.callbacks:
-            self.callbacks['submit'](data)
-
-    def set_callbacks(self, callbacks):
-        self.callbacks = callbacks
 
     def handle_pre_conditions(self, value):
         if value.get() == "ja":
