@@ -58,7 +58,7 @@ class ViewGUI:
         self.biological_sex_label = tk.Label(self.form_frame, text="Biologisches Geschlecht:")
         self.biological_sex_label.pack()
         self.sex_var = tk.StringVar()
-        self.sex_var.set(None)  # Setze auf None
+        self.sex_var.set(None)  # Setze auf None, um keine Vorauswahl zu haben
         for sex in ["w", "m"]:
             radio = tk.Radiobutton(self.form_frame, text=sex, variable=self.sex_var, value=sex)
             radio.pack(anchor=tk.CENTER)
@@ -67,11 +67,18 @@ class ViewGUI:
         self.pre_conditions_label = tk.Label(self.form_frame, text="Vorerkrankungen:")
         self.pre_conditions_label.pack()
         self.pre_conditions_var = tk.StringVar()
-        self.pre_conditions_var.set(None)  # Setze auf None
-        for condition in ["ja", "nein"]:
-            radio = tk.Radiobutton(self.form_frame, text=condition, variable=self.pre_conditions_var,
-                                   value=condition, command= lambda: self.handle_pre_conditions(self.pre_conditions_var))
-            radio.pack(anchor=tk.CENTER)
+        self.pre_conditions_var.set(None)  # Setze auf None, um keine Vorauswahl zu haben
+        # for condition in ["ja", "nein"]:
+        #     radio = tk.Radiobutton(self.form_frame, text=condition, variable=self.pre_conditions_var,
+        #                            value=condition, command= lambda: self.handle_pre_conditions(self.pre_conditions_var))
+        #     radio.pack(anchor=tk.CENTER)
+
+        radio_yes = tk.Radiobutton(self.form_frame, text="ja", variable=self.pre_conditions_var,
+                                value="ja", command= self.show_pre_conditions_options)
+        radio_yes.pack(anchor=tk.CENTER)
+        radio_no = tk.Radiobutton(self.form_frame, text="nein", variable=self.pre_conditions_var,
+                                value="nein", command = self.hide_pre_conditions_options)
+        radio_no.pack(anchor=tk.CENTER)
 
         self.condition_options_frame = tk.Frame(self.form_frame)
         self.condition_options_frame.pack()
@@ -80,7 +87,7 @@ class ViewGUI:
         self.fitness_level_label = tk.Label(self.form_frame, text="Fitnesslevel:")
         self.fitness_level_label.pack()
         self.fitness_var = tk.StringVar()
-        self.fitness_var.set(None)  # Setze auf None
+        self.fitness_var.set(None)  # Setze auf None, um keine Vorauswahl zu haben
 
         for level in ["wenig aktiv (weniger als 150 min Sport/Woche)",
                       "aktiv (mind. 150 min Sport/Woche)",
@@ -92,7 +99,7 @@ class ViewGUI:
         self.diet_level_label = tk.Label(self.form_frame, text="Ernährung:")
         self.diet_level_label.pack()
         self.diet_var = tk.StringVar()
-        self.diet_var.set(None)  # Setze auf None
+        self.diet_var.set(None)  # Setze auf None, um keine Vorauswahl zu haben
         for level in ["wenig ausgewogen", "ausgewogen", "sehr ausgewogen"]:
             radio = tk.Radiobutton(self.form_frame, text=level, variable=self.diet_var, value=level)
             radio.pack(anchor=tk.CENTER)
@@ -151,11 +158,11 @@ class ViewGUI:
             'diet_level': self.diet_var.get()
         }
 
-    def handle_pre_conditions(self, value):
-        if value.get() == "ja":
-            self.show_pre_conditions_options()
-        else:
-            self.hide_pre_conditions_options()
+    # def handle_pre_conditions(self, value):
+    #     if value.get() == "ja":
+    #         self.show_pre_conditions_options()
+    #     else:
+    #         self.hide_pre_conditions_options()
 
     def show_pre_conditions_options(self):
         if False == self.pre_conditions_options_hidden:
@@ -191,7 +198,7 @@ class ViewGUI:
     def show_all_results(self):
         self.clear_data_display()
 
-        data = [f"{person._name}: {person._risk: .6f}%" for person in self.model]
+        data = [f"{person._name}: {person._risk: .6f}%" for person in self.model.get_person_list()]
         for entry in data:
             self.data_display.insert(tk.END, entry)
 
