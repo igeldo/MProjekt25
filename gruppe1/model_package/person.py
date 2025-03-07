@@ -7,11 +7,12 @@ from model_package.health_conditions import HealthConditions
 
 class Person:
     def __init__(self, name: str, age: AgeRange, biological_sex: BiologicalSex,
-                 pre_conditions: PreCondition, fitness_level: FitnessLevel, diet_level: DietLevel):
+                 pre_conditions: list[PreCondition], fitness_level: FitnessLevel, diet_level: DietLevel):
         if not (isinstance(name, str)
                 and isinstance(age, AgeRange)
                 and isinstance(biological_sex, BiologicalSex)
-                and isinstance(pre_conditions, PreCondition)
+                and isinstance(pre_conditions, list)
+                and all(isinstance(condition, PreCondition) for condition in pre_conditions)
                 and isinstance(fitness_level, FitnessLevel)
                 and isinstance(diet_level, DietLevel)):
             raise ValueError("Data types do not match.")
@@ -24,6 +25,6 @@ class Person:
     def __str__(self):
         return (f"Name: {self._name}, Alter: {self._age}, "
                 f"biologisches Geschlecht: {self._biological_sex}, "
-                f"Vorerkrankungen: {self._health_condition._pre_condition}, "
+                f"Vorerkrankungen: {self._health_condition._pre_conditions}, "
                 f"Fitnesslevel: {self._health_condition._fitness_level}, "
                 f"Dietlevel: {self._health_condition._diet_level}")

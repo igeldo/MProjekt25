@@ -31,12 +31,14 @@ class ControlGUI:
         fitness_level = data['fitness_level']
         diet_level = data['diet_level']
 
-        print(name)
-        print(age)
-        print(biological_sex)
-        print(pre_conditions)
-        print(fitness_level)
-        print(diet_level)
+        # print(name)
+        # print(age)
+        # print(biological_sex)
+        # print(pre_conditions)
+        # print(fitness_level)
+        # print(diet_level)
+        #
+        # print("-------------------------------------------------------------- test ---------------------------------")
 
         if not (name and age and biological_sex and pre_conditions and fitness_level and diet_level):
             self.view.set_status("Bitte alles ausfüllen!", "error")
@@ -55,14 +57,6 @@ class ControlGUI:
         # if "None" == diet_level:
         #     raise ValueError("Bitte geben Sie Ihre Diät an!")
 
-        age_enum = AgeRange.string_to_enum(age)
-        biological_sex_enum = BiologicalSex.string_to_enum(biological_sex)
-
-        # TODO Liste
-        pre_conditions_enum = PreCondition.string_to_enum(pre_conditions)
-        fitness_level_enum = FitnessLevel.string_to_enum(fitness_level)
-        diet_level_enum = DietLevel.string_to_enum(diet_level)
-
         # print(age_enum)
         # print(biological_sex_enum)
         # print(pre_conditions_enum)
@@ -70,6 +64,14 @@ class ControlGUI:
         # print(diet_level_enum)
 
         try:
+            age_enum = AgeRange.string_to_enum(age)
+            biological_sex_enum = BiologicalSex.string_to_enum(biological_sex)
+            pre_conditions_arguments = [pre_condition.strip() for pre_condition in pre_conditions.split(",")]
+            pre_conditions_enum = [PreCondition.string_to_enum(pre_condition) for pre_condition in
+                                   pre_conditions_arguments]
+            fitness_level_enum = FitnessLevel.string_to_enum(fitness_level)
+            diet_level_enum = DietLevel.string_to_enum(diet_level)
+
             person = Person(name=name, age=age_enum, biological_sex=biological_sex_enum,
                             pre_conditions=pre_conditions_enum,
                             fitness_level=fitness_level_enum, diet_level=diet_level_enum)
