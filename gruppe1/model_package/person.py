@@ -1,9 +1,12 @@
 from model_package.constants_package.age_range import AgeRange
 from model_package.constants_package.biological_sex import BiologicalSex
+from model_package.constants_package.diabetes_ii_chance import AGE_RANGE_CHANCE, BIOLOGICAL_SEX_CHANCE, \
+    PRE_CONDITION_CHANCE, FITNESS_LEVEL_CHANCE, DIET_LEVEL_CHANCE
 from model_package.constants_package.pre_condition import PreCondition
 from model_package.constants_package.fitness_level import FitnessLevel
 from model_package.constants_package.diet_level import DietLevel
 from model_package.health_conditions import HealthConditions
+import model_package
 
 class Person:
     def __init__(self, name: str, age: AgeRange, biological_sex: BiologicalSex,
@@ -20,6 +23,32 @@ class Person:
         self._age = age
         self._biological_sex = biological_sex
         self._health_condition = HealthConditions(pre_conditions, fitness_level, diet_level)
+
+    def calculate_probability(self):
+        age_chance = AGE_RANGE_CHANCE[self._age]
+        sex_chance = BIOLOGICAL_SEX_CHANCE[self._biological_sex]
+        pre_condition_chance = sum(PRE_CONDITION_CHANCE[condition] for condition in self._health_condition._pre_conditions)
+        fitness_chance = FITNESS_LEVEL_CHANCE[self._health_condition._fitness_level]
+        diet_chance = DIET_LEVEL_CHANCE[self._health_condition._diet_level]
+
+        if not PreCondition.NONE == self._health_condition._pre_conditions[0]:
+            total_probability = (
+                    age_chance *
+                    sex_chance *
+                    pre_condition_chance *
+                    (fitness_chance + diet_chance) *
+                    100
+            )
+        else :
+            total_probability = (
+                    age_chance *
+                    sex_chance *
+                    (fitness_chance + diet_chance) *
+                    100
+            )
+        return total_probability
+
+
 
     # for debugging purposes only
     def __str__(self):
