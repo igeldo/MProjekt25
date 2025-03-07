@@ -2,21 +2,23 @@ from enum import Enum
 
 # TODO: names
 class PreCondition(Enum):
-    CONDITION_1 = 1
-    CONDITION_2 = 2
-    OTHER       = 3
+    NONE        = 'nein'
+    CONDITION_1 = 'Bluthochdruck'
+    CONDITION_2 = 'Schilddrüsenüberfunktion'
+    OTHER       = 'andere'
 
-    pre_condition_to_str = {
-        CONDITION_1: 'Bluthochdruck',
-        CONDITION_2: 'Schilddrüsenüberfunktion',
-        OTHER:       'andere'
-    }
-
-    str_to_pre_condition = {
-        'Bluthochdruck': CONDITION_1,
-        'Schilddrüsenüberfunktion': CONDITION_2,
-        'andere': OTHER
-    }
+    @staticmethod
+    def string_to_enum(string: str):
+        value = None
+        if 'nein' == string:
+            value = PreCondition.NONE
+        elif 'Bluthochdruck' == string:
+            value = PreCondition.CONDITION_1
+        elif 'Schilddrüsenüberfunktion' == string:
+            value = PreCondition.CONDITION_2
+        elif 'andere' == string:
+            value = PreCondition.OTHER
+        return value
 
     # #TODO: pre_condition "S"?
     #

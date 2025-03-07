@@ -1,18 +1,17 @@
 from enum import Enum
 
 class BiologicalSex(Enum):
-    FEMALE  = 1
-    MALE    = 2
+    FEMALE  = 'w'
+    MALE    = 'm'
 
-    biological_sex_to_str = {
-        FEMALE: 'w',
-        MALE: 'm'
-    }
-
-    str_to_biological_sex = {
-        'w': FEMALE,
-        'm': MALE,
-    }
+    @staticmethod
+    def string_to_enum(string: str):
+        value = None
+        if 'w' == string:
+            value = BiologicalSex.FEMALE
+        elif 'm' == string:
+            value = BiologicalSex.MALE
+        return value
 
     # @staticmethod
     # def str_to_biological_sex(biological_sex: str):

@@ -94,7 +94,7 @@ class ViewGUI:
         self.diet_level_label.pack()
         self.diet_var = tk.StringVar()
         self.diet_var.set(None)  # Setze auf None
-        for level in ["unausgewogene Ernährung", "ausgewogenere Ernährung", "ausgewogene Ernährung"]:
+        for level in ["wenig ausgewogen", "ausgewogen", "sehr ausgewogen"]:
             radio = tk.Radiobutton(self.form_frame, text=level, variable=self.diet_var, value=level)
             radio.pack(anchor=tk.CENTER)
 

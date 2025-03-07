@@ -1,5 +1,10 @@
 from model_package.model import *
 from view_package.view_gui import ViewGUI
+from model_package.constants_package.age_range import AgeRange
+from model_package.constants_package.diet_level import DietLevel
+from model_package.constants_package.fitness_level import FitnessLevel
+from model_package.constants_package.biological_sex import BiologicalSex
+from model_package.constants_package.pre_condition import PreCondition
 
 class ControlGUI:
     def __init__(self, model: Model, view: ViewGUI):
@@ -26,12 +31,12 @@ class ControlGUI:
         fitness_level = data['fitness_level']
         diet_level = data['diet_level']
 
-        # print(name)
-        # print(age)
-        # print(biological_sex)
-        # print(pre_conditions)
-        # print(fitness_level)
-        # print(diet_level)
+        print(name)
+        print(age)
+        print(biological_sex)
+        print(pre_conditions)
+        print(fitness_level)
+        print(diet_level)
 
         if not (name and age and biological_sex and pre_conditions and fitness_level and diet_level):
             self.view.set_status("Bitte alles ausfüllen!", "error")
@@ -50,11 +55,24 @@ class ControlGUI:
         # if "None" == diet_level:
         #     raise ValueError("Bitte geben Sie Ihre Diät an!")
 
-        # Erstelle eine Person-Instanz und füge sie dem Modell hinzu
+        age_enum = AgeRange.string_to_enum(age)
+        biological_sex_enum = BiologicalSex.string_to_enum(biological_sex)
+
+        # TODO Liste
+        pre_conditions_enum = PreCondition.string_to_enum(pre_conditions)
+        fitness_level_enum = FitnessLevel.string_to_enum(fitness_level)
+        diet_level_enum = DietLevel.string_to_enum(diet_level)
+
+        # print(age_enum)
+        # print(biological_sex_enum)
+        # print(pre_conditions_enum)
+        # print(fitness_level_enum)
+        # print(diet_level_enum)
+
         try:
-            person = Person(name=name, age=age, biological_sex=biological_sex,
-                            pre_conditions=pre_conditions,
-                            fitness_level=fitness_level, diet_level=diet_level)
+            person = Person(name=name, age=age_enum, biological_sex=biological_sex_enum,
+                            pre_conditions=pre_conditions_enum,
+                            fitness_level=fitness_level_enum, diet_level=diet_level_enum)
             self.model.add_person(person)
             self.view.set_status(f"Person '{name}' hinzugefügt", "success")
         except ValueError:

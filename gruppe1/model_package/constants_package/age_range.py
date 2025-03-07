@@ -2,21 +2,20 @@ from enum import Enum
 
 # TODO: come up with better names, think about smaller ranges
 class AgeRange(Enum):
-    RANGE_18_TO_44  = 1
-    RANGE_45_TO_64  = 2
-    RANGE_65_TO_79  = 3
+    RANGE_18_TO_44  = '18 bis 44'
+    RANGE_45_TO_64  = '45 bis 64'
+    RANGE_65_TO_79  = '65 bis 79'
 
-    age_range_to_str = {
-        RANGE_18_TO_44: '18 bis 44',
-        RANGE_45_TO_64: '45 bis 64',
-        RANGE_65_TO_79: '65 bis 79',
-    }
-
-    str_to_age_range = {
-        '18 bis 44': RANGE_18_TO_44,
-        '45 bis 64': RANGE_45_TO_64,
-        '65 bis 79': RANGE_65_TO_79
-    }
+    @staticmethod
+    def string_to_enum(string: str):
+        value = None
+        if '18 bis 44' == string:
+            value = AgeRange.RANGE_18_TO_44
+        elif '45 bis 64' == string:
+            value = AgeRange.RANGE_45_TO_64
+        elif '65 bis 79' == string:
+            value = AgeRange.RANGE_65_TO_79
+        return value
 
     # @staticmethod
     # def str_to_age_range(age_range: str):

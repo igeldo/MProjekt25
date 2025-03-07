@@ -2,21 +2,20 @@ from enum import Enum
 
 # TODO: come up with better names
 class FitnessLevel(Enum):
-    LOW     = 1
-    MID     = 2
-    HIGH    = 3
+    LOW     = 'wenig aktiv (weniger als 150 min Sport/Woche)'
+    MID     = 'aktiv (mind. 150 min Sport/Woche)'
+    HIGH    = 'sehr aktiv (deutlich mehr als 150 min Sport/Woche)'
 
-    fitness_level_to_str = {
-        LOW: 'wenig aktiv',
-        MID: 'aktiv',
-        HIGH: 'sehr aktiv'
-    }
-
-    str_to_fitness_level = {
-        'wenig aktiv': LOW,
-        'aktiv': MID,
-        'sehr aktiv': HIGH
-    }
+    @staticmethod
+    def string_to_enum(string: str):
+        value = None
+        if 'wenig aktiv (weniger als 150 min Sport/Woche)' == string:
+            value = FitnessLevel.LOW
+        elif 'aktiv (mind. 150 min Sport/Woche)' == string:
+            value = FitnessLevel.MID
+        elif 'sehr aktiv (deutlich mehr als 150 min Sport/Woche)' == string:
+            value = FitnessLevel.HIGH
+        return value
 
     # @staticmethod
     # def str_to_fitness_level(fitness_level: str):

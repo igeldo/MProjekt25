@@ -2,21 +2,20 @@ from enum import Enum
 
 # TODO: come up with better names
 class DietLevel(Enum):
-    UNHEALTHY   = 1
-    MID         = 2
-    HEALTHY     = 3
+    UNHEALTHY   = 'wenig ausgewogen'
+    MID         = 'ausgewogen'
+    HEALTHY     = 'sehr ausgewogen'
 
-    diet_level_to_str = {
-        UNHEALTHY: 'wenig ausgewogen',
-        MID: 'ausgewogen',
-        HEALTHY: 'sehr ausgewogen'
-    }
-
-    str_to_diet_level = {
-        'wenig ausgewogen': UNHEALTHY,
-        'ausgewogen': MID,
-        'sehr ausgewogen': HEALTHY
-    }
+    @staticmethod
+    def string_to_enum(string: str):
+        value = None
+        if 'wenig ausgewogen' == string:
+            value = DietLevel.UNHEALTHY
+        elif 'ausgewogen' == string:
+            value = DietLevel.MID
+        elif 'sehr ausgewogen' == string:
+            value = DietLevel.HEALTHY
+        return value
 
 
     # @staticmethod
