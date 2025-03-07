@@ -14,6 +14,7 @@ class ViewGUI:
         self.root = root
 
         self.setup_window()
+        self.pre_conditions_options_hidden = True
 
     def setup_window(self):
         self.root.title("Diabetes-II-Risikorechner")
@@ -45,7 +46,7 @@ class ViewGUI:
         self.age_label.pack()
         self.age_var = tk.StringVar()
         self.age_var.set(None)  # Setze auf None, um keine Vorauswahl zu haben
-        age_options = ["18 bis 27", "28 bis 37", "38 bis 47", "48 bis 57", "58 bis 67", "68 bis 77", "anderes"]
+        age_options = ["18 bis 44", "45 bis 64", "65 bis 79"]
         for option in age_options:
             radio = tk.Radiobutton(self.form_frame, text=option, variable=self.age_var, value=option)
             radio.pack(anchor=tk.CENTER)
@@ -143,6 +144,9 @@ class ViewGUI:
     def show_pre_conditions_options(self):
         # Zeige zusätzliche Optionen für Vorerkrankungen an
         # Hier können weitere Widgets hinzugefügt werden, um spezifische Bedingungen auszuwählen
+        if False == self.pre_conditions_options_hidden:
+            return
+        self.pre_conditions_options_hidden = False
         tk.Label(self.condition_options_frame, text="Wählen Sie eine Vorerkrankung:").pack(anchor=tk.W)
         condition_options = ["Bluthochdruck", "Schilddrüsenüberfunktion", "andere"]
         self.selected_pre_conditions = []
@@ -154,6 +158,7 @@ class ViewGUI:
 
     def hide_pre_conditions_options(self):
         # Verstecke die zusätzlichen Optionen
+        self.pre_conditions_options_hidden = True
         for widget in self.condition_options_frame.winfo_children():
             widget.destroy()
 
