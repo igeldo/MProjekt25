@@ -105,16 +105,14 @@ class ViewGUI:
         # clear button
 
 
-        self.button_switch_to_display = tk.Button(self.form_frame, text="Zur Auswertung",
-                                                  command=self.show_display_frame)
+        self.button_switch_to_display = tk.Button(self.form_frame, text="Zur Auswertung")
         self.button_switch_to_display.pack()
 
     def create_display_widgets(self):
         self.data_display = tk.Listbox(self.display_frame, height=15, width=80)
         self.data_display.pack()
 
-        self.button_switch_to_form = tk.Button(self.display_frame, text="Zur Dateneingabe",
-                                               command=self.show_form_frame)
+        self.button_switch_to_form = tk.Button(self.display_frame, text="Zur Dateneingabe")
         self.button_switch_to_form.pack()
 
     def show_form_frame(self):
@@ -129,7 +127,8 @@ class ViewGUI:
         # Hier sammeln wir die Daten und informieren die Control-Klasse
         pre_conditions = "nein"     # Vorauswahl = "nein"
         if "ja" == self.pre_conditions_var.get():
-            pre_conditions = ", ".join([pre_condition.get() for pre_condition in self.selected_pre_conditions if ("" != pre_condition.get() and "None" != pre_condition.get())])
+            pre_conditions = ", ".join([pre_condition.get() for pre_condition in self.selected_pre_conditions
+                                        if ("" != pre_condition.get() and "None" != pre_condition.get())])
         return {
             'name': self.name_entry.get(),
             'age': self.age_var.get(),

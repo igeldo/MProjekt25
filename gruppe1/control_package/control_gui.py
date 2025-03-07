@@ -19,6 +19,8 @@ class ControlGUI:
 
         # bind buttons to methods
         self.view.add_person_button.config(command=self.add_person)
+        self.view.button_switch_to_display.config(command=self.show_results)
+        self.view.button_switch_to_form.config(command=self.show_form)
 
     def add_person(self):
         # Hier konvertieren und speichern wir die Benutzerinformationen
@@ -80,3 +82,15 @@ class ControlGUI:
         except ValueError:
             self.view.set_status("Bei der Datenverarbeitung ist etwas schiefgelaufen. "
                                  "Bitte nehmen Sie mit uns Kontakt auf.", "error")
+
+
+    def show_results(self):
+        # calcs
+
+        self.view.show_display_frame()
+
+
+    def show_form(self):
+        # clear
+
+        self.view.show_form_frame()
