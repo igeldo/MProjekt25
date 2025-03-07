@@ -23,15 +23,19 @@ class Person:
         self._age = age
         self._biological_sex = biological_sex
         self._health_condition = HealthConditions(pre_conditions, fitness_level, diet_level)
+        self._risk = 0
+        self.calculate_probability()
 
     def calculate_probability(self):
         age_chance = AGE_RANGE_CHANCE[self._age]
         sex_chance = BIOLOGICAL_SEX_CHANCE[self._biological_sex]
-        pre_condition_chance = sum(PRE_CONDITION_CHANCE[condition] for condition in self._health_condition._pre_conditions)
         fitness_chance = FITNESS_LEVEL_CHANCE[self._health_condition._fitness_level]
         diet_chance = DIET_LEVEL_CHANCE[self._health_condition._diet_level]
 
         if not PreCondition.NONE == self._health_condition._pre_conditions[0]:
+            pre_condition_chance = sum(
+                PRE_CONDITION_CHANCE[condition] for condition in self._health_condition._pre_conditions)
+
             total_probability = (
                     age_chance *
                     sex_chance *
@@ -46,9 +50,7 @@ class Person:
                     (fitness_chance + diet_chance) *
                     100
             )
-        return total_probability
-
-
+        self._risk = total_probability
 
     # for debugging purposes only
     def __str__(self):
@@ -56,4 +58,5 @@ class Person:
                 f"biologisches Geschlecht: {self._biological_sex}, "
                 f"Vorerkrankungen: {self._health_condition._pre_conditions}, "
                 f"Fitnesslevel: {self._health_condition._fitness_level}, "
-                f"Dietlevel: {self._health_condition._diet_level}")
+                f"Dietlevel: {self._health_condition._diet_level}, "
+                f"Risiko: {self._risk: .6f}")

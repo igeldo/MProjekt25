@@ -109,11 +109,21 @@ class ViewGUI:
         self.button_switch_to_display.pack()
 
     def create_display_widgets(self):
+        risk_label = tk.Label(self.display_frame, text="Ihr geschätztes Risiko:", anchor=tk.CENTER)
+        risk_label.pack()
+
         self.data_display = tk.Listbox(self.display_frame, height=15, width=80)
         self.data_display.pack()
 
         self.button_switch_to_form = tk.Button(self.display_frame, text="Zur Dateneingabe")
         self.button_switch_to_form.pack()
+
+        disclaimer_label = tk.Label(self.display_frame, text="Bitte beachten Sie: "
+            "Auch Personen mit einem geringen Risiko können an Diabetes erkranken. "
+            "Dagegen können Personen mit einem hohen Risiko gesund bleiben. "
+            "Der Test kann eine ärztliche Diagnose daher nicht ersetzen. "
+            "Bitte sprechen Sie auch mit Ihrem Arzt über das Thema Diabetes.", anchor=tk.CENTER, wraplength=400)
+        disclaimer_label.pack()
 
     def show_form_frame(self):
         self.display_frame.pack_forget()
@@ -173,6 +183,16 @@ class ViewGUI:
             self.status_label.config(bg="red", fg="white")
         else:
             self.status_label.config(bg="lightgray", fg="black")
+
+    def clear_data_display(self):
+        self.data_display.delete(0, tk.END)
+
+    def show_all_results(self):
+        self.clear_data_display()
+
+        data = [f"{person._name}: {person._risk: .6f}%" for person in self.model]
+        for entry in data:
+            self.data_display.insert(tk.END, entry)
 
 
     #TODO: werden 'set(None)'s gebraucht?

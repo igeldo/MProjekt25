@@ -86,11 +86,10 @@ class ControlGUI:
 
     def show_results(self):
         # calcs
-
+        self.view.show_all_results()
         self.view.show_display_frame()
 
 
     def show_form(self):
         # clear
-
         self.view.show_form_frame()
