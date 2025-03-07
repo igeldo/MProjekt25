@@ -5,10 +5,4 @@ class Model(list[Person]):
         if isinstance(person, Person):
             self.append(person)
         else:
-            raise ValueError("Nur Objekte der Klasse 'Person' können hinzugefügt werden.")
-        for person in self:
-            print(person)
-    # def get_person(self, index):
-    #     if index < 0 or index >= len(self):
-    #         raise IndexError("Index liegt außerhalb der Grenzen der Liste.")
-    #     return self[index]
+            raise ValueError("Type does not match.")

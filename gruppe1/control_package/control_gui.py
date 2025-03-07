@@ -33,37 +33,9 @@ class ControlGUI:
         fitness_level = data['fitness_level']
         diet_level = data['diet_level']
 
-        # print(name)
-        # print(age)
-        # print(biological_sex)
-        # print(pre_conditions)
-        # print(fitness_level)
-        # print(diet_level)
-        #
-        # print("-------------------------------------------------------------- test ---------------------------------")
-
         if not (name and age and biological_sex and pre_conditions and fitness_level and diet_level):
             self.view.set_status("Bitte alles ausfüllen!", "error")
             return
-
-        # if not name:
-        #     raise ValueError("Bitte geben Sie Ihren Namen an!")
-        # if "None" == age:
-        #     raise ValueError("Bitte geben Sie Ihr Alter an!")
-        # if "None" == biological_sex:
-        #     raise ValueError("Bitte geben Sie Ihr biologisches Geschlecht an!")
-        # if "None" == pre_conditions:
-        #     raise ValueError("Bitte geben Sie an, ob Sie Vorerkrankungen haben!")
-        # if "None" == fitness_level:
-        #     raise ValueError("Bitte geben Sie Ihren Fitnesslevel an!")
-        # if "None" == diet_level:
-        #     raise ValueError("Bitte geben Sie Ihre Diät an!")
-
-        # print(age_enum)
-        # print(biological_sex_enum)
-        # print(pre_conditions_enum)
-        # print(fitness_level_enum)
-        # print(diet_level_enum)
 
         try:
             age_enum = AgeRange.string_to_enum(age)
@@ -85,11 +57,9 @@ class ControlGUI:
 
 
     def show_results(self):
-        # calcs
         self.view.show_all_results()
         self.view.show_display_frame()
 
 
     def show_form(self):
-        # clear
         self.view.show_form_frame()

@@ -1,6 +1,5 @@
 from model_package.model import Model
 import tkinter as tk
-from tkinter import messagebox
 
 class ViewGUI:
     def __init__(self, model: Model, root: tk.Tk):
@@ -98,22 +97,27 @@ class ViewGUI:
             radio = tk.Radiobutton(self.form_frame, text=level, variable=self.diet_var, value=level)
             radio.pack(anchor=tk.CENTER)
 
-        # Submit Button
+        # Add person button
         self.add_person_button = tk.Button(self.form_frame, text="Hinzufügen")
         self.add_person_button.pack()
-
-        # clear button
-
 
         self.button_switch_to_display = tk.Button(self.form_frame, text="Zur Auswertung")
         self.button_switch_to_display.pack()
 
     def create_display_widgets(self):
+        close_label = tk.Label(self.display_frame, text="Zum Hinzufügen einer weiteren Person"
+                                                        " klicken Sie auf den Button 'Zur Dateneingabe'. Zum Beenden des Risikorechners"
+                                                        " schließen Sie das Fenster mit dem Klicken auf X oben rechts",
+                               anchor=tk.CENTER, wraplength=400)
+        close_label.pack()
+
         risk_label = tk.Label(self.display_frame, text="Ihr geschätztes Risiko:", anchor=tk.CENTER)
         risk_label.pack()
 
         self.data_display = tk.Listbox(self.display_frame, height=15, width=80)
         self.data_display.pack()
+
+
 
         self.button_switch_to_form = tk.Button(self.display_frame, text="Zur Dateneingabe")
         self.button_switch_to_form.pack()
@@ -122,7 +126,7 @@ class ViewGUI:
             "Auch Personen mit einem geringen Risiko können an Diabetes erkranken. "
             "Dagegen können Personen mit einem hohen Risiko gesund bleiben. "
             "Der Test kann eine ärztliche Diagnose daher nicht ersetzen. "
-            "Bitte sprechen Sie auch mit Ihrem Arzt über das Thema Diabetes.", anchor=tk.CENTER, wraplength=400)
+            "Bitte sprechen Sie auch mit Ihrem Arzt über das Thema Diabetes. ", anchor=tk.CENTER, wraplength=400)
         disclaimer_label.pack()
 
     def show_form_frame(self):
@@ -134,7 +138,6 @@ class ViewGUI:
         self.display_frame.pack(fill="both", expand=True)
 
     def get_inputs(self):
-        # Hier sammeln wir die Daten und informieren die Control-Klasse
         pre_conditions = "nein"     # Vorauswahl = "nein"
         if "ja" == self.pre_conditions_var.get():
             pre_conditions = ", ".join([pre_condition.get() for pre_condition in self.selected_pre_conditions
@@ -155,8 +158,6 @@ class ViewGUI:
             self.hide_pre_conditions_options()
 
     def show_pre_conditions_options(self):
-        # Zeige zusätzliche Optionen für Vorerkrankungen an
-        # Hier können weitere Widgets hinzugefügt werden, um spezifische Bedingungen auszuwählen
         if False == self.pre_conditions_options_hidden:
             return
         self.pre_conditions_options_hidden = False

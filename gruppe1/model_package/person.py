@@ -6,7 +6,6 @@ from model_package.constants_package.pre_condition import PreCondition
 from model_package.constants_package.fitness_level import FitnessLevel
 from model_package.constants_package.diet_level import DietLevel
 from model_package.health_conditions import HealthConditions
-import model_package
 
 class Person:
     def __init__(self, name: str, age: AgeRange, biological_sex: BiologicalSex,
@@ -52,11 +51,11 @@ class Person:
             )
         self._risk = total_probability
 
-    # for debugging purposes only
-    def __str__(self):
-        return (f"Name: {self._name}, Alter: {self._age}, "
-                f"biologisches Geschlecht: {self._biological_sex}, "
-                f"Vorerkrankungen: {self._health_condition._pre_conditions}, "
-                f"Fitnesslevel: {self._health_condition._fitness_level}, "
-                f"Dietlevel: {self._health_condition._diet_level}, "
-                f"Risiko: {self._risk: .6f}")
+    # # for debugging purposes only
+    # def __str__(self):
+    #     return (f"Name: {self._name}, Alter: {self._age}, "
+    #             f"biologisches Geschlecht: {self._biological_sex}, "
+    #             f"Vorerkrankungen: {self._health_condition._pre_conditions}, "
+    #             f"Fitnesslevel: {self._health_condition._fitness_level}, "
+    #             f"Dietlevel: {self._health_condition._diet_level}, "
+    #             f"Risiko: {self._risk: .6f}")

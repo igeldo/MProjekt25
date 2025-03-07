@@ -16,8 +16,6 @@ class Main:
         # control calls methods
         root.mainloop()
 
-        #TODO: Mindestfensterbreite
-
 if __name__ == '__main__':
     main = Main()
     main.run()
