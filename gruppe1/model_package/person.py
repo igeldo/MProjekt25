@@ -8,6 +8,14 @@ from model_package.health_conditions import HealthConditions
 class Person:
     def __init__(self, name: str, age: AgeRange, biological_sex: BiologicalSex,
                  pre_conditions: PreCondition, fitness_level: FitnessLevel, diet_level: DietLevel):
+        if not (isinstance(name, str)
+                and isinstance(age, AgeRange)
+                and isinstance(biological_sex, BiologicalSex)
+                and isinstance(pre_conditions, PreCondition)
+                and isinstance(fitness_level, FitnessLevel)
+                and isinstance(diet_level, DietLevel)):
+            raise ValueError("Bei der Datenverarbeitung ist etwas schiefgelaufen. "
+                             "Bitte nehmen Sie mit uns Kontakt auf.")
         self._name = name
         self._age = age
         self._biological_sex = biological_sex

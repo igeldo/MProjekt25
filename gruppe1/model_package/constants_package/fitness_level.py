@@ -6,19 +6,31 @@ class FitnessLevel(Enum):
     MID     = 2
     HIGH    = 3
 
-    @staticmethod
-    def str_to_fitness_level(fitness_level: str):
-        # TODO: exception handling, also convert to string first
+    fitness_level_to_str = {
+        LOW: 'wenig aktiv',
+        MID: 'aktiv',
+        HIGH: 'sehr aktiv'
+    }
 
-        print(type(fitness_level))
+    str_to_fitness_level = {
+        'wenig aktiv': LOW,
+        'aktiv': MID,
+        'sehr aktiv': HIGH
+    }
 
-        if "1" == fitness_level:
-            fitness_level = FitnessLevel.LOW
-        elif "2" == fitness_level:
-            fitness_level = FitnessLevel.MID
-        elif "3" == fitness_level:
-            fitness_level = FitnessLevel.HIGH
-        else:
-            raise ValueError("Keine korrekte Eingabe")
-
-        return fitness_level
+    # @staticmethod
+    # def str_to_fitness_level(fitness_level: str):
+    #     # TODO: exception handling, also convert to string first
+    #
+    #     print(type(fitness_level))
+    #
+    #     if "1" == fitness_level:
+    #         fitness_level = FitnessLevel.LOW
+    #     elif "2" == fitness_level:
+    #         fitness_level = FitnessLevel.MID
+    #     elif "3" == fitness_level:
+    #         fitness_level = FitnessLevel.HIGH
+    #     else:
+    #         raise ValueError("Keine korrekte Eingabe")
+    #
+    #     return fitness_level

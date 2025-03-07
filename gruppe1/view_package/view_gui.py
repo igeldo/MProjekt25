@@ -30,7 +30,7 @@ class ViewGUI:
 
     def create_form_widgets(self):
         # opening disclaimer
-        label = tk.Label(self.form_frame, text="Willkommen zum Ihrem Risikorechner! Disclaimer!!!!!!!!!!!!!!!!!!!!!!!! "
+        label = tk.Label(self.form_frame, text="Willkommen zum Ihrem Risikorechner! "
                                          "Falls Sie fortfahren, erklären Sie sich einverstanden.",
                          anchor=tk.CENTER, wraplength=400)
         label.pack()

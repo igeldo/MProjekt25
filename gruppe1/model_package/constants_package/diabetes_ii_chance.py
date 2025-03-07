@@ -4,21 +4,15 @@ from diet_level import DietLevel
 from fitness_level import FitnessLevel
 from pre_condition import PreCondition
 
-#TODO: look up actual data
+BIOLOGICAL_SEX_CHANCE = {BiologicalSex.FEMALE: 0.008, BiologicalSex.MALE: 0.015}
 
+AGE_RANGE_CHANCE = {AgeRange.RANGE_18_TO_44: 0.002, AgeRange.RANGE_45_TO_64: 0.016, AgeRange.RANGE_65_TO_79: 0.061}
 
+PRE_CONDITION_CHANCE = {PreCondition.CONDITION_1: 0.291, PreCondition.CONDITION_2: 0.502, PreCondition.OTHER: 0.4461}
 
-BIOLOGICAL_SEX_CHANCE = {BiologicalSex.FEMALE: 0.01 , BiologicalSex.MALE: 0.02}
+FITNESS_LEVEL_CHANCE = {FitnessLevel.LOW: 0.076, FitnessLevel.MID: 0.037, FitnessLevel.HIGH: 0.002}
 
-# TODO: other ranges
-AGE_RANGE_CHANCE = {AgeRange.RANGE_18_TO_25: 0.0001 , AgeRange.RANGE_28_TO_37: 0.0008}
-
-#TODO: other conditions: 'Schilddrüsenunterfunktion', 'Bluthochdruck', ...
-PRE_CONDITION_CHANCE = {PreCondition.CONDITION_1: 0.02 , PreCondition.CONDITION_2: 0.04 , PreCondition.OTHER: 0.1}
-
-FITNESS_LEVEL_CHANCE = {FitnessLevel.LOW: 0.006 , FitnessLevel.MID: 00.3 , FitnessLevel.HIGH: 0.001}
-
-DIET_LEVEL_CHANCE = {DietLevel.UNHEALTHY: 0.01 , DietLevel.MID: 0.004 , DietLevel.HEALTHY: 0.001}
+DIET_LEVEL_CHANCE = {DietLevel.UNHEALTHY: 0.081, DietLevel.MID: 0.019, DietLevel.HEALTHY: 0.007}
 
 
 #
@@ -53,37 +47,6 @@ DIET_LEVEL_CHANCE = {DietLevel.UNHEALTHY: 0.01 , DietLevel.MID: 0.004 , DietLeve
 #     UNHEALTHY = 'unhealthy'
 #     MID = 'mid'
 #     HEALTHY = 'healthy'
-#
-#
-# # Wahrscheinlichkeiten definieren
-# BIOLOGICAL_SEX_CHANCE = {
-#     BiologicalSex.FEMALE: 0.008,
-#     BiologicalSex.MALE: 0.015
-# }
-#
-# AGE_RANGE_CHANCE = {
-#     AgeRange.RANGE_18_TO_44: 0.002,
-#     AgeRange.RANGE_45_TO_64: 0.016,
-#     AgeRange.RANGE_65_TO_79: 0.061
-# }
-#
-# PRE_CONDITION_CHANCE = {
-#     PreCondition.CONDITION_1: 0.291,
-#     PreCondition.CONDITION_2: 0.502,
-#     PreCondition.OTHER: 0.446
-# }
-#
-# FITNESS_LEVEL_CHANCE = {
-#     FitnessLevel.LOW: 0.076,
-#     FitnessLevel.MID: 0.037,
-#     FitnessLevel.HIGH: 0.002
-# }
-#
-# DIET_LEVEL_CHANCE = {
-#     DietLevel.UNHEALTHY: 0.081,
-#     DietLevel.MID: 0.019,
-#     DietLevel.HEALTHY: 0.007
-# }
 #
 #
 # # Funktion zur Berechnung der Gesamtwahrscheinlichkeit

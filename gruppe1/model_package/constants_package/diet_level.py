@@ -6,17 +6,30 @@ class DietLevel(Enum):
     MID         = 2
     HEALTHY     = 3
 
-    @staticmethod
-    def str_to_diet_level(diet_level: str):
-        # TODO: exception handling
+    diet_level_to_str = {
+        UNHEALTHY: 'wenig ausgewogen',
+        MID: 'ausgewogen',
+        HEALTHY: 'sehr ausgewogen'
+    }
 
-        if "1" == diet_level:
-            diet_level = DietLevel.UNHEALTHY
-        elif "2" == diet_level:
-            diet_level = DietLevel.MID
-        elif "3" == diet_level:
-            diet_level = DietLevel.HEALTHY
-        else:
-            raise ValueError("Keine korrekte Eingabe")
+    str_to_diet_level = {
+        'wenig ausgewogen': UNHEALTHY,
+        'ausgewogen': MID,
+        'sehr ausgewogen': HEALTHY
+    }
 
-        return diet_level
+
+    # @staticmethod
+    # def str_to_diet_level(diet_level: str):
+    #     # TODO: exception handling
+    #
+    #     if "1" == diet_level:
+    #         diet_level = DietLevel.UNHEALTHY
+    #     elif "2" == diet_level:
+    #         diet_level = DietLevel.MID
+    #     elif "3" == diet_level:
+    #         diet_level = DietLevel.HEALTHY
+    #     else:
+    #         raise ValueError("Keine korrekte Eingabe")
+    #
+    #     return diet_level
