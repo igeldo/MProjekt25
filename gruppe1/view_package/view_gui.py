@@ -20,6 +20,10 @@ class ViewGUI:
         self.root.title("Diabetes-II-Risikorechner")
         self.root.minsize(400, 650)
 
+        # Status Label (First Row)
+        self.status_label = tk.Label(self.root, bg="lightgray")
+        self.status_label.pack(expand=True, fill=tk.X)
+
         self.form_frame = tk.Frame(self.root)
         self.display_frame = tk.Frame(self.root)
 
@@ -162,6 +166,14 @@ class ViewGUI:
         for widget in self.condition_options_frame.winfo_children():
             widget.destroy()
 
+    def set_status(self, message, status_type="info"):
+        self.status_label.config(text=f"Status: {message}")
+        if status_type == "success":
+            self.status_label.config(bg="green", fg="white")
+        elif status_type == "error":
+            self.status_label.config(bg="red", fg="white")
+        else:
+            self.status_label.config(bg="lightgray", fg="black")
 
 
     #TODO: werden 'set(None)'s gebraucht?

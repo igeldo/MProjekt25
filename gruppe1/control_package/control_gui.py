@@ -33,21 +33,30 @@ class ControlGUI:
         # print(fitness_level)
         # print(diet_level)
 
-        if not name:
-            raise ValueError("Bitte geben Sie Ihren Namen an!")
-        if "None" == age:
-            raise ValueError("Bitte geben Sie Ihr Alter an!")
-        if "None" == biological_sex:
-            raise ValueError("Bitte geben Sie Ihr biologisches Geschlecht an!")
-        if "None" == pre_conditions:
-            raise ValueError("Bitte geben Sie an, ob Sie Vorerkrankungen haben!")
-        if "None" == fitness_level:
-            raise ValueError("Bitte geben Sie Ihren Fitnesslevel an!")
-        if "None" == diet_level:
-            raise ValueError("Bitte geben Sie Ihre Diät an!")
+        if not (name and age and biological_sex and pre_conditions and fitness_level and diet_level):
+            self.view.set_status("Bitte alles ausfüllen!", "error")
+            return
+
+        # if not name:
+        #     raise ValueError("Bitte geben Sie Ihren Namen an!")
+        # if "None" == age:
+        #     raise ValueError("Bitte geben Sie Ihr Alter an!")
+        # if "None" == biological_sex:
+        #     raise ValueError("Bitte geben Sie Ihr biologisches Geschlecht an!")
+        # if "None" == pre_conditions:
+        #     raise ValueError("Bitte geben Sie an, ob Sie Vorerkrankungen haben!")
+        # if "None" == fitness_level:
+        #     raise ValueError("Bitte geben Sie Ihren Fitnesslevel an!")
+        # if "None" == diet_level:
+        #     raise ValueError("Bitte geben Sie Ihre Diät an!")
 
         # Erstelle eine Person-Instanz und füge sie dem Modell hinzu
-        person = Person(name=name, age=age, biological_sex=biological_sex,
-                        pre_conditions=pre_conditions,
-                        fitness_level=fitness_level, diet_level=diet_level)
-        self.model.add_person(person)
+        try:
+            person = Person(name=name, age=age, biological_sex=biological_sex,
+                            pre_conditions=pre_conditions,
+                            fitness_level=fitness_level, diet_level=diet_level)
+            self.model.add_person(person)
+            self.view.set_status(f"Person '{name}' hinzugefügt", "success")
+        except ValueError:
+            self.view.set_status("Bei der Datenverarbeitung ist etwas schiefgelaufen. "
+                                 "Bitte nehmen Sie mit uns Kontakt auf.", "error")

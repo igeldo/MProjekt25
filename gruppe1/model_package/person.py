@@ -14,8 +14,7 @@ class Person:
                 and isinstance(pre_conditions, PreCondition)
                 and isinstance(fitness_level, FitnessLevel)
                 and isinstance(diet_level, DietLevel)):
-            raise ValueError("Bei der Datenverarbeitung ist etwas schiefgelaufen. "
-                             "Bitte nehmen Sie mit uns Kontakt auf.")
+            raise ValueError("Data types do not match.")
         self._name = name
         self._age = age
         self._biological_sex = biological_sex

@@ -7,8 +7,7 @@ class HealthConditions:
         if not (isinstance(pre_condition, PreCondition)
                 and isinstance(fitness_level, FitnessLevel)
                 and isinstance(diet_level, DietLevel)):
-            raise ValueError("Bei der Datenverarbeitung ist etwas schiefgelaufen. "
-                             "Bitte nehmen Sie mit uns Kontakt auf.")
+            raise ValueError("Data types do not match.")
         self._pre_condition = pre_condition
         self._fitness_level = fitness_level
         self._diet_level = diet_level
